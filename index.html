@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>1994.06.25 占術原典データ比較レポート (2025-2028)</title>
+  <style>
+    :root {
+      --bg: #0f1217;
+      --bg-card: #171b22;
+      --bg-card-alt: #1e242e;
+      --border: #2c3444;
+      --text: #e6eaf0;
+      --text-muted: #94a0b8;
+      --blue: #3b82f6;
+      --blue-soft: rgba(59, 130, 246, 0.14);
+      --teal: #14b8a6;
+      --teal-soft: rgba(20, 184, 166, 0.14);
+      --amber: #f59e0b;
+      --amber-soft: rgba(245, 158, 11, 0.14);
+      --red: #ef4444;
+      --red-soft: rgba(239, 68, 68, 0.14);
+      --violet: #a855f7;
+      --violet-soft: rgba(168, 85, 247, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 0 84px 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+      line-height: 1.65;
+      font-size: 14.5px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #161b24 0%, #0f1217 100%);
+      padding: 22px 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-soft);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      margin: 0 0 6px 0;
+      font-size: 19px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .hero-sub {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 12.5px;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .spec-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+
+    .spec-label {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .spec-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .nav-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      overflow-x: auto;
+      background: rgba(15, 18, 23, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 12px;
+      gap: 6px;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px 14px;
+    }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 4px 0 12px;
+      color: #fff;
+      border-left: 3px solid var(--blue);
+      padding-left: 9px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      margin: 0;
+      color: #fff;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .pill-blue { background: var(--blue-soft); color: #60a5fa; }
+    .pill-teal { background: var(--teal-soft); color: #2dd4bf; }
+    .pill-amber { background: var(--amber-soft); color: #fbbf24; }
+    .pill-red { background: var(--red-soft); color: #f87171; }
+    .pill-violet { background: var(--violet-soft); color: #c084fc; }
+
+    p { margin: 0 0 9px 0; font-size: 13.8px; }
+    p:last-child { margin-bottom: 0; }
+
+    .pro-con {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .box-pro, .box-con, .box-edge {
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .box-pro {
+      background: rgba(20, 184, 166, 0.08);
+      border: 1px solid rgba(20, 184, 166, 0.28);
+    }
+    .box-con {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+    }
+    .box-edge {
+      background: rgba(245, 158, 11, 0.09);
+      border: 1px solid rgba(245, 158, 11, 0.32);
+    }
+    .box-title {
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .box-pro .box-title { color: #2dd4bf; }
+    .box-con .box-title { color: #f87171; }
+    .box-edge .box-title { color: #fbbf24; }
+
+    ul {
+      margin: 4px 0 0 0;
+      padding-left: 17px;
+    }
+    li {
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 8px 0 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      min-width: 520px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg-card-alt);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 11.5px;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    .callout {
+      background: var(--bg-card-alt);
+      border-left: 3px solid var(--amber);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(23, 27, 34, 0.96);
+      border-top: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 60;
+    }
+    .bottom-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .bottom-text strong {
+      color: #fff;
+      display: block;
+      font-size: 12.5px;
+    }
+    .next-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 7px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-badge">RAW DATA ONLY｜1994.06.25</div>
+    <h1>1994年6月25日生まれ 占術原典データ比較</h1>
+    <p class="hero-sub">個人の背景情報を一切排除し、生年月日（1994/06/25）のみから算出される6占術の原典テキスト・年運・月運・表裏一体のトレードオフをそのまま記述</p>
+
+    <div class="spec-grid">
+      <div class="spec-item">
+        <span class="spec-label">五星三心占い（命数19）</span>
+        <div class="spec-val">金のインディアン座</div>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">六星占術（星数19・戌年）</span>
+        <div class="spec-val">金星人（＋）</div>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">四柱推命（甲戌・庚午・壬午）</span>
+        <div class="spec-val">日干支：壬午（19番）</div>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">西洋占星術 / 九星 / 数秘</span>
+        <div class="spec-val">太陽かに座・月山羊〜水瓶 / 一白 / 7・9</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('tab-1', this)">① 原典の気質(表と裏)</button>
+    <button class="tab-btn" onclick="switchTab('tab-2', this)">② 年運比較(2025-28)</button>
+    <button class="tab-btn" onclick="switchTab('tab-3', this)">③ 月運一覧(2026-27)</button>
+    <button class="tab-btn" onclick="switchTab('tab-4', this)">④ 占術間の矛盾点</button>
+    <button class="tab-btn" onclick="switchTab('tab-5', this)">⑤ とんがらせる光と代償</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- TAB 1: 原典の気質 -->
+    <section id="tab-1" class="tab-section active">
+      <div class="section-title">生年月日（1994.06.25）のみから出る原典の気質</div>
+      <p style="color:var(--text-muted);">
+        6つの占術の原典テキストに書かれている「長所」と「短所」の素データです。
+      </p>
+
+      <!-- 五星三心 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">1. 五星三心：金のインディアン座（命数19）</h3>
+          <span class="pill pill-blue">命数19（下一桁9）</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【原典の長所】</span>
+            <ul>
+              <li>好奇心旺盛で、新しいもの・未知の分野に飛び込む行動力がある。</li>
+              <li>命数19（下一桁9）はインディアン座の中でも「探究心・研究心」が強く、興味を持った対象を深く掘り下げる。</li>
+              <li>発想の転換が早く、複数のことを同時に並行処理できる。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【原典の短所】</span>
+            <ul>
+              <li><strong>飽きっぽく持続力がない</strong>：仕組みや全体像が分かると急に興味を失い、完成前や定常段階で投げ出しやすい。</li>
+              <li><strong>理屈っぽく屁理屈が多い</strong>：命数19は「理屈で納得しないと動かない」「自分を正当化する理屈を並べやすい」とされる。</li>
+              <li><strong>空想・妄想と詰め込みすぎ</strong>：予定やアイデアを詰め込みすぎてパンクし、結果的にどれも中途半端になる傾向。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 六星占術 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">2. 六星占術：金星人（＋）（星数19）</h3>
+          <span class="pill pill-amber">金星人＋</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【原典の長所】</span>
+            <ul>
+              <li>自由主義でフットワークが軽く、既存の枠組みや常識に縛られない。</li>
+              <li>センスが良く、合理的に要領よく物事をこなす。社交的で華がある。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【原典の短所】</span>
+            <ul>
+              <li><strong>責任感の希薄さと落ち着きのなさ</strong>：地道な努力や忍耐を要する場面から逃げやすい。</li>
+              <li><strong>組織・家庭への不適合</strong>：定型業務や上下関係、家庭内のルーティンを嫌い、「自分勝手」「気分屋」と見なされやすい。</li>
+              <li><strong>思慮の浅さ</strong>：深く考えずにノリで動いて失敗する、または飽きた瞬間に無責任に手放すリスク。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 四柱推命・算命学 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">3. 四柱推命・算命学：甲戌・庚午・壬午</h3>
+          <span class="pill pill-teal">日柱：壬午（19番）</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【原典の長所】</span>
+            <ul>
+              <li><strong>日干「壬（みずのえ）」×月柱「庚（偏印）」</strong>：知恵・企画力・流動性が高く、停滞を嫌って常に動く。</li>
+              <li><strong>壬午（暗合異常干支・禄馬同群）</strong>：直感力・先見性・霊感に近い洞察力を持ち、財運（正財・丁との暗合）を引き寄せる力が強い。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【原典の短所】</span>
+            <ul>
+              <li><strong>月柱「庚午」×日柱「壬午」の『午―午の自刑（じけい）』</strong>：他人に邪魔されなくても、自分の完璧主義・焦燥感・思い込みによって自ら墓穴を掘る（自家中毒・自己破壊）配置。</li>
+              <li><strong>水火の激突</strong>：日干が「水（壬）」で日支・月支が「火（午）」のため、外面はクールでも内面の感情の沸点が低く、気分や情熱の乱高下が激しい。</li>
+              <li><strong>偏印（梟神）の作用</strong>：独特の感性を持つ反面、猜疑心が強くなったり、偏屈・孤独に陥りやすい。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 西洋占星術・九星・数秘 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">4. 西洋占星術・九星気学・数秘術</h3>
+          <span class="pill pill-violet">太陽かに座 / 一白 / 数秘7</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【原典の長所】</span>
+            <ul>
+              <li><strong>太陽・水星かに座3°合（カジミ）</strong>：知性と自己表現が一体化しており、言語化・記憶・模倣・防衛本能が鋭い。</li>
+              <li><strong>金星しし座×火星おうし座</strong>：華やかな自己表現欲求（しし座）と、物質的・感覚的なこだわり（おうし座）。</li>
+              <li><strong>数秘術「誕生数7」</strong>：分析力・懐疑精神・一人の時間を必要とする探求者。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【原典の短所】</span>
+            <ul>
+              <li><strong>太陽（かに座：情・身内びいき）と月・数秘7（水瓶座/山羊座・7：冷淡な合理主義）の分裂</strong>：親身に世話を焼くモードと、他人を突き放して殻にこもるモードが極端に入れ替わる。</li>
+              <li><strong>金星しし座×火星おうし座のスクエア（90度）傾向</strong>：見栄やこだわりにお金・エネルギーを使いすぎたり、頑固で妥協できない面が出やすい。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 年運比較 -->
+    <section id="tab-2" class="tab-section">
+      <div class="section-title">2025〜2028年 6占術の年運データ一覧</div>
+      <p style="color:var(--text-muted);">
+        生年月日から機械的に算出される年運テーブルです。占術間で判定が真っ向から割れる年が存在します。
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>年</th>
+              <th>五星三心<br>(金インディアン)</th>
+              <th>六星占術<br>(金星人＋)</th>
+              <th>西洋占星術<br>(太陽かに座)</th>
+              <th>四柱推命(壬午)<br>九星(一白水星)</th>
+              <th>原典上の位置づけ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2025年</strong><br>乙巳</td>
+              <td><span class="pill pill-teal">開運の年</span><br>12周期の頂点</td>
+              <td><span class="pill pill-teal">財成</span><br>好調期（収穫）</td>
+              <td>6月〜 木星がかに座（第1室）へ（12年に1度の拡大期）</td>
+              <td><strong>乙巳（傷官）</strong><br>九星：南西（準備・基盤）</td>
+              <td>西洋・五星・六星の3つが揃って「拡大・好調」を示す年。</td>
+            </tr>
+            <tr>
+              <td><strong>2026年</strong><br>丙午</td>
+              <td><span class="pill pill-amber">ブレーキの年</span><br>上半期は吉、下半期から減速</td>
+              <td><span class="pill pill-teal">安定</span><br>好調期の最終年（翌年から大殺界）</td>
+              <td>2月〜 土星・海王星がおひつじ座（第10室：天頂）へ（90度スクエア）</td>
+              <td><strong>丙午（偏財・帝旺）</strong><br><span class="pill pill-red">午×午×午の自刑</span><br>九星：中宮（八方塞がり）</td>
+              <td>前半は勢いがあるが、四柱推命では「火の過剰・自刑」、西洋では「10室の土星スクエア」、五星では「後半ブレーキ」が重なる負荷の高い年。</td>
+            </tr>
+            <tr>
+              <td><strong>2027年</strong><br>丁未</td>
+              <td><span class="pill pill-red">乱気の年</span><br>12周期で最も注意すべき凶年（現状維持）</td>
+              <td><span class="pill pill-red">陰影</span><br>大殺界の1年目（新規事・転職・移転は凶）</td>
+              <td>〜7月 木星第2室<br>通年：第10室土星スクエア継続</td>
+              <td><strong>丁未（正財・養）</strong><br><span class="pill pill-teal">日柱と天地徳合</span><br>九星：北西（乾宮・実り）</td>
+              <td><strong>【判定が真っ二つに割れる年】</strong><br>六星・五星では「大殺界・乱気（凶）」。四柱推命・九星では「天地徳合・乾宮（大吉・結実）」。</td>
+            </tr>
+            <tr>
+              <td><strong>2028年</strong><br>戊申</td>
+              <td><span class="pill pill-amber">裏運気の年</span><br>本来の自分が裏返る年（執着を手放す）</td>
+              <td><span class="pill pill-red">停止</span><br>大殺界のど真ん中（2年目）</td>
+              <td>4月 第10室土星が抜け、おうし座（60度吉角）へ移動</td>
+              <td><strong>戊申（偏官・長生）</strong><br>申が午の火を冷ます（水源）<br>九星：西（兌宮・悦び）</td>
+              <td>六星・五星では「停止・裏運気」で引き続き低迷期。一方、西洋の土星重圧は2028年4月に解除され、四柱推命でも火の暴走が収まる。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: 月運推移 -->
+    <section id="tab-3" class="tab-section">
+      <div class="section-title">2026年〜2027年 月運テーブル（機械的算出）</div>
+      <p style="color:var(--text-muted);">
+        金星人（六星占術）および金のインディアン座（五星三心）の月運周期は、毎年同じ月（7〜9月）に殺界・裏運気が巡る構造になっています。
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>月</th>
+              <th>六星占術（金星人）月運</th>
+              <th>五星三心（金インディアン）月運</th>
+              <th>占術上の定型アドバイス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1月</strong></td>
+              <td>健弱（小殺界）</td>
+              <td>乱気の月</td>
+              <td>体調管理優先・無理な計画を立てない</td>
+            </tr>
+            <tr>
+              <td><strong>2月</strong></td>
+              <td>達成</td>
+              <td>裏運気の月</td>
+              <td>六星では最高潮だが、五星では予想外のトラブルや判断ミスに注意</td>
+            </tr>
+            <tr>
+              <td><strong>3月</strong></td>
+              <td>乱気（中殺界）</td>
+              <td>整理の月</td>
+              <td>不要な人間関係や物事の整理・精神的ダメージに注意</td>
+            </tr>
+            <tr>
+              <td><strong>4月</strong></td>
+              <td>再会</td>
+              <td>チャレンジの月</td>
+              <td>新しい出会いやスタートに向く月</td>
+            </tr>
+            <tr>
+              <td><strong>5月</strong></td>
+              <td>財成</td>
+              <td>チャレンジの月 / 健康管理の月</td>
+              <td>行動範囲を広げやすいが、後半は疲れが出やすい</td>
+            </tr>
+            <tr>
+              <td><strong>6月</strong></td>
+              <td>安定</td>
+              <td>開運の月 / ブレーキの月</td>
+              <td>上半期のまとめ。下半期の減速に備える時期</td>
+            </tr>
+            <tr style="background:rgba(239,68,68,0.08);">
+              <td><strong>7月</strong></td>
+              <td><strong style="color:#f87171;">陰影（大殺界）</strong></td>
+              <td><strong style="color:#f87171;">乱気の月</strong></td>
+              <td>毎年共通の低迷期入口。新規の決断や衝突を避ける</td>
+            </tr>
+            <tr style="background:rgba(239,68,68,0.08);">
+              <td><strong>8月</strong></td>
+              <td><strong style="color:#f87171;">停止（大殺界）</strong></td>
+              <td><strong style="color:#f87171;">裏運気の月</strong></td>
+              <td>年間で最も運気が落ちる月。休養・現状維持が鉄則</td>
+            </tr>
+            <tr style="background:rgba(239,68,68,0.08);">
+              <td><strong>9月</strong></td>
+              <td><strong style="color:#f87171;">減退（大殺界）</strong></td>
+              <td><strong style="color:#fbbf24;">整理の月</strong></td>
+              <td>夏の混乱の後始末・不要なものの手放し</td>
+            </tr>
+            <tr style="background:rgba(59,130,246,0.1);">
+              <td><strong>10月</strong></td>
+              <td><strong style="color:#2dd4bf;">種子</strong></td>
+              <td><strong style="color:#2dd4bf;">解放の月 / 準備の月</strong></td>
+              <td>3ヶ月の低迷期が明け、新しいサイクルの種まきが始まる月</td>
+            </tr>
+            <tr>
+              <td><strong>11月</strong></td>
+              <td>緑生</td>
+              <td>準備の月 / 幸運の月</td>
+              <td>徐々にペースが戻るが、うっかりミスには注意</td>
+            </tr>
+            <tr>
+              <td><strong>12月</strong></td>
+              <td>立花</td>
+              <td>開運の月 / ブレーキの月</td>
+              <td>年末に向けて方向性が定まる月</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 4: 占術間の矛盾点と忖度なしの検証 -->
+    <section id="tab-4" class="tab-section">
+      <div class="section-title">占術間の矛盾点と、都合よく解釈しがちな罠</div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">1. 「全部の占いが同じことを言っている」は嘘</h3>
+          <span class="pill pill-red">メタ検証</span>
+        </div>
+        <p>
+          生年月日（1994.06.25）を6つの占術にかけると、実は<strong>一致している部分と、真っ向から矛盾している部分</strong>があります。
+        </p>
+        <ul>
+          <li>
+            <strong>一致している点（通年・気質）</strong>：<br>
+            「知的好奇心・企画力が高い反面、飽きっぽくルーティンに弱いこと（金星人・インディアン座・壬・数秘7）」「2026年が火の過剰（丙午）や土星スクエアで負荷が高いこと」「毎年7〜9月が月運の底であること」は複数の占術で一致しています。
+          </li>
+          <li>
+            <strong>矛盾している点（特に2027年・2028年）</strong>：<br>
+            2027年（丁未）は、<strong>六星占術と五星三心では「大殺界（陰影）・乱気の年」という明確な凶年</strong>ですが、<strong>四柱推命では「日柱・壬午と天地徳合（干合支合）」、九星気学では「乾宮（実り・抜擢）」という大吉年</strong>になります。<br>
+            これは、六星占術が「天中殺（午未空亡ではないが、金星人＝申酉天中殺ベースの12運を独自シフトした周期）」を使っているのに対し、四柱推命は「壬と丁の干合・午と未の支合」を吉と見るため、計算ロジック自体が逆の結果を出しているためです。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">2. 占いを「自己正当化」に使うリスク</h3>
+          <span class="pill pill-amber">フラットな注意点</span>
+        </div>
+        <p>
+          命数19や数秘7の気質解説には<strong>「自分のやりたいことや逃避を、もっともらしい理屈（データや理論）で正当化する癖がある」</strong>と明記されています。
+        </p>
+        <p>
+          そのため、「今はブレーキの年だから」「自分は0→1タイプだから」という占いの言葉を、単なる<strong>「面倒な対人調整や地道な継続から逃げるための免罪符」</strong>として使うと、原典が警告している一番悪いパターン（飽きて放り出し、周囲の信頼を失う）にそのままハマる危険があります。
+        </p>
+      </div>
+    </section>
+
+    <!-- TAB 5: とんがらせる光と代償 -->
+    <section id="tab-5" class="tab-section">
+      <div class="section-title">弱点を直さず「とんがらせる」場合のメリットと代償</div>
+      <p style="color:var(--text-muted);">
+        弱点を矯正せずにそのまま振り切る場合、「うまくいくバラ色の話」だけではなく、<strong>確実に支払うことになるコスト（副作用）</strong>がセットになります。両方を受け入れる覚悟があるかどうかが分岐点です。
+      </p>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">1. 「飽き性・0→1特化」をとんがらせる場合</h3>
+          <span class="pill pill-amber">トレードオフ①</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【振り切った時のリターン（光）】</span>
+            <ul>
+              <li>誰も手をつけない新しい領域に最速で切り込み、短期間でプロトタイプや枠組みを立ち上げる突破力は突出する。</li>
+              <li>「ルーティンをやらない」と決めることで、常に新鮮なテーマに熱量を注げる。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【引き受けるべき代償・リスク（影）】</span>
+            <ul>
+              <li><strong>「作った後の保守・運用」を引き受ける人間や仕組みが機能しなかった場合、作ったものがすべて廃墟化する</strong>（器用貧乏・打ち上げ花火で終わるリスク）。</li>
+              <li>地道に現場を回している人間からは「美味しいところだけやって飽きたら投げる人」と恨まれやすいため、その反発をどう抑えるか（権限で押さえるか、実利で黙らせるか）のコストが発生する。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">2. 「理屈っぽさ・ドライな損切り」をとんがらせる場合</h3>
+          <span class="pill pill-blue">トレードオフ②</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【振り切った時のリターン（光）】</span>
+            <ul>
+              <li>情やしがらみで判断が鈍る場面で、数字と構造だけで冷徹に損切り・意思決定ができる。</li>
+              <li>曖昧な精神論を排し、再現性のあるロジックやシステムに落とし込める。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【引き受けるべき代償・リスク（影）】</span>
+            <ul>
+              <li><strong>人間的な孤立</strong>：正論と合理性で詰められると、普通の人間は萎縮するか敵に回る。「正しいけれど誰もついてこない（裸の王様）」になるリスクが常に伴う。</li>
+              <li>特に運気が落ちる時期（乱気・大殺界）は、この「冷たさ・理屈っぽさ」が引き金となって、思わぬところから足を引っ張られたり裏切られたりしやすい。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">3. 「午×午の自刑（完璧主義・こだわり）」をとんがらせる場合</h3>
+          <span class="pill pill-violet">トレードオフ③</span>
+        </div>
+        <div class="pro-con">
+          <div class="box-pro">
+            <span class="box-title">【振り切った時のリターン（光）】</span>
+            <ul>
+              <li>妥協を許さない美意識と集中力により、個人の専門領域や作品・プロダクトの完成度が極限まで高まる。</li>
+            </ul>
+          </div>
+          <div class="box-con">
+            <span class="box-title">【引き受けるべき代償・リスク（影）】</span>
+            <ul>
+              <li><strong>心身のオーバーヒート（自損事故）</strong>：「自刑」は他人がいなくても自分一人で自分を追い詰める配置。睡眠や健康を削って暴走し、ある日突然プツンと糸が切れて全部ぶち壊したくなる衝動と隣り合わせになる。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>📌 フラットな結論</strong><br>
+        弱点を直さずにとんがらせるのは、1994年6月25日の偏った命式（19番の重なり・自刑・カジミ）を活かす上で合理的な選択ですが、<strong>「ノーリスクでうまくいく魔法」ではありません</strong>。<br>
+        とんがらせるなら、<strong>「周囲から『冷たい・飽きっぽい』と思われること」「自分で自分を焼き切るリスクがあること」を織り込み済み（必要経費）として引き受ける覚悟</strong>が要ります。
+      </div>
+    </section>
+
+  </main>
+
+  <div class="bottom-bar">
+    <div class="bottom-text">
+      <strong>1994.06.25 原典データ＆トレードオフ版</strong>
+      個人背景なし・光と代償の両面記述
+    </div>
+    <button class="next-btn" onclick="nextTab()">次のタブ ▸</button>
+  </div>
+
+  <script>
+    const tabIds = ['tab-1', 'tab-2', 'tab-3', 'tab-4', 'tab-5'];
+    let currentIdx = 0;
+
+    function switchTab(targetId, btnEl) {
+      tabIds.forEach((id, idx) => {
+        const sec = document.getElementById(id);
+        if (id === targetId) {
+          sec.classList.add('active');
+          currentIdx = idx;
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach((b, idx) => {
+        b.classList.toggle('active', idx === currentIdx);
+      });
+      if (btnEl) {
+        btnEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextTab() {
+      const nextIdx = (currentIdx + 1) % tabIds.length;
+      const buttons = document.querySelectorAll('.tab-btn');
+      switchTab(tabIds[nextIdx], buttons[nextIdx]);
+    }
+  </script>
+</body>
+</html>
