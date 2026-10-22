@@ -64,23 +64,70 @@
   // 3. 人生の波
   (function () {
     var maxAge = D.decades[D.decades.length - 1].r[1] + 1;
-    var W = 480, H = 240, L = 10, R = 10, T = 28, B = 40;
+    var T = '#9aa8bd';
+    // ---- Chart A: 長期(大運の地力) × 中期(年スコア) 折れ線 ----
+    var W = 480, H = 280, L = 34, R = 34, TP = 26, B = 46;
     var sx = function (a) { return L + (W - L - R) * a / maxAge; };
-    var base = H - B, uh = (base - T) / 5;
-    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="10年大運ごとの地力の目安">';
-    for (var g = 1; g <= 5; g++) svg += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + (base - g * uh) + '" y2="' + (base - g * uh) + '" stroke="#2a3447" stroke-dasharray="3 4"/>';
+    var base = H - B, top = TP, span = base - top;
+    var yL = function (v) { return base - span * v / 5; };
+    var yR = function (v) { return base - span * (v + 5) / 10; };
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="長期と中期の折れ線グラフ">';
+    for (var g = 0; g <= 5; g++) {
+      svg += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yL(g) + '" y2="' + yL(g) + '" stroke="#2a3447" stroke-dasharray="3 4"/>';
+      svg += '<text x="' + (L - 6) + '" y="' + (yL(g) + 4) + '" fill="#5eead4" font-size="11" text-anchor="end">' + g + '</text>';
+    }
+    [-5, 0, 5].forEach(function (v) { svg += '<text x="' + (W - R + 6) + '" y="' + (yR(v) + 4) + '" fill="#fbbf24" font-size="11">' + (v > 0 ? "+" : "") + v + '</text>'; });
+    svg += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + yR(0) + '" y2="' + yR(0) + '" stroke="#566480"/>';
+    // 現在の大運の帯
     D.decades.forEach(function (d) {
-      var x = sx(d.r[0]), w = sx(d.r[1] + 1) - x - 3, hh = d.lv * uh;
-      var cur = D.nowAge >= d.r[0] && D.nowAge <= d.r[1];
-      var fill = cur ? "#fbbf24" : (d.lv >= 4 ? "#14b8a6" : d.lv === 3 ? "rgba(20,184,166,.6)" : "rgba(148,163,184,.45)");
-      svg += '<rect x="' + x + '" y="' + (base - hh) + '" width="' + w + '" height="' + hh + '" rx="6" fill="' + fill + '"/>';
-      svg += '<text x="' + (x + w / 2) + '" y="' + (base - hh - 6) + '" fill="#e6ecf5" font-size="14" font-weight="700" text-anchor="middle">' + d.ju.replace(/[()（）]/g, "").split("・")[0] + '</text>';
-      svg += '<text x="' + (x + w / 2) + '" y="' + (base + 16) + '" fill="#9aa8bd" font-size="11" text-anchor="middle">' + d.r[0] + '〜' + d.r[1] + '歳</text>';
+      if (D.nowAge >= d.r[0] && D.nowAge <= d.r[1]) svg += '<rect x="' + sx(d.r[0]) + '" y="' + top + '" width="' + (sx(d.r[1] + 1) - sx(d.r[0])) + '" height="' + span + '" fill="rgba(251,191,36,.08)"/>';
     });
-    svg += '<text x="' + sx(D.nowAge) + '" y="' + (base + 33) + '" fill="#fbbf24" font-size="14" font-weight="800" text-anchor="middle">▲ いま(' + D.nowAge + '歳)</text></svg>';
-    var h = "<h2>10年ごとの地力の目安</h2>";
-    h += '<p class="lead">棒の高さは大運の十二運から読んだ5段階の目安です(黄色が現在の大運)。数値の精密さではなく、どの10年が上り坂かを見る図です。</p>';
+    // 長期：大運の地力(中点を結ぶ)
+    var lp = D.decades.map(function (d) { return [sx((d.r[0] + d.r[1] + 1) / 2), yL(d.lv), d]; });
+    svg += '<polyline fill="none" stroke="#14b8a6" stroke-width="3.5" stroke-linejoin="round" points="' + lp.map(function (p) { return p[0] + "," + p[1]; }).join(" ") + '"/>';
+    lp.forEach(function (p) {
+      svg += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4.5" fill="#14b8a6" stroke="#0d1117" stroke-width="2"/>';
+      svg += '<text x="' + p[0] + '" y="' + (p[1] - 10) + '" fill="#e6ecf5" font-size="12" font-weight="700" text-anchor="middle">' + p[2].ju.replace(/[()（）]/g, "").split("・")[0] + '</text>';
+    });
+    // 中期：年スコア(2024-2040)
+    var yp = D.years.map(function (y) { return [sx(y[1] + 0.5), yR(y[2]), y]; });
+    svg += '<polyline fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linejoin="round" points="' + yp.map(function (p) { return p[0] + "," + p[1]; }).join(" ") + '"/>';
+    yp.forEach(function (p) { svg += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.8" fill="' + (p[2][2] < 0 ? "#f87171" : "#fbbf24") + '"/>'; });
+    // 横軸
+    for (var a = 0; a <= maxAge; a += 10) svg += '<text x="' + sx(a) + '" y="' + (base + 16) + '" fill="' + T + '" font-size="11" text-anchor="middle">' + a + '歳</text>';
+    svg += '<line x1="' + sx(D.nowAge + 0.5) + '" x2="' + sx(D.nowAge + 0.5) + '" y1="' + top + '" y2="' + base + '" stroke="#fbbf24" stroke-dasharray="4 3"/>';
+    svg += '<text x="' + sx(D.nowAge + 0.5) + '" y="' + (base + 34) + '" fill="#fbbf24" font-size="13" font-weight="800" text-anchor="middle">▲ いま(' + D.nowAge + '歳)</text></svg>';
+
+    // ---- Chart B: 短期(2026-2028 月別) 折れ線 ----
+    var pts = [];
+    [2026, 2027, 2028].forEach(function (yr) { D.months[yr].forEach(function (m) { pts.push({ yr: yr, m: m[0], s: m[1] }); }); });
+    var W2 = 480, H2 = 220, L2 = 34, R2 = 14, T2 = 24, B2 = 40;
+    var n = pts.length, sx2 = function (i) { return L2 + (W2 - L2 - R2) * i / (n - 1); };
+    var b2 = H2 - B2, sp2 = b2 - T2, y2 = function (v) { return b2 - sp2 * (v + 5) / 10; };
+    var s2 = '<svg viewBox="0 0 ' + W2 + ' ' + H2 + '" role="img" aria-label="2026〜2028年の月別折れ線グラフ">';
+    [-4, -2, 0, 2, 4].forEach(function (v) {
+      s2 += '<line x1="' + L2 + '" x2="' + (W2 - R2) + '" y1="' + y2(v) + '" y2="' + y2(v) + '" stroke="' + (v === 0 ? "#566480" : "#2a3447") + '" stroke-dasharray="' + (v === 0 ? "" : "3 4") + '"/>';
+      s2 += '<text x="' + (L2 - 6) + '" y="' + (y2(v) + 4) + '" fill="' + T + '" font-size="11" text-anchor="end">' + (v > 0 ? "+" : "") + v + '</text>';
+    });
+    pts.forEach(function (p, i) {
+      if (p.m === 2 && i > 0) s2 += '<line x1="' + (sx2(i) - 6) + '" x2="' + (sx2(i) - 6) + '" y1="' + T2 + '" y2="' + b2 + '" stroke="#3b4963"/>';
+      if (p.m === 2) s2 += '<text x="' + (sx2(i) + 4) + '" y="' + (b2 + 32) + '" fill="#e6ecf5" font-size="13" font-weight="800">' + p.yr + '年</text>';
+      if (p.m % 2 === 0) s2 += '<text x="' + sx2(i) + '" y="' + (b2 + 15) + '" fill="' + T + '" font-size="10" text-anchor="middle">' + p.m + '</text>';
+    });
+    s2 += '<polyline fill="none" stroke="#14b8a6" stroke-width="3" stroke-linejoin="round" points="' + pts.map(function (p, i) { return sx2(i) + "," + y2(p.s); }).join(" ") + '"/>';
+    pts.forEach(function (p, i) {
+      var c = p.s <= -2 ? "#f87171" : p.s >= 1 ? "#2dd4bf" : "#9aa8bd";
+      s2 += '<circle cx="' + sx2(i) + '" cy="' + y2(p.s) + '" r="' + (Math.abs(p.s) >= 3 ? 5 : 3.5) + '" fill="' + c + '"/>';
+      if (Math.abs(p.s) >= 3) s2 += '<text x="' + sx2(i) + '" y="' + (y2(p.s) + (p.s < 0 ? 17 : -9)) + '" fill="' + c + '" font-size="11" font-weight="800" text-anchor="middle">' + p.m + '月</text>';
+    });
+    s2 += '</svg>';
+
+    var h = "<h2>人生全体 × 近い年（折れ線）</h2>";
+    h += '<p class="lead"><b style="color:#5eead4">緑の線</b>は10年大運ごとの地力(左軸・5段階)、<b style="color:#fbbf24">黄色の線</b>は2024〜2040年の年ごとの総合スコア(右軸・−5〜+5)です。点線が現在地、薄い帯が現在の大運です。</p>';
     h += '<div class="chart">' + svg + '</div>';
+    h += '<h2>この3年（月ごとの折れ線）</h2>';
+    h += '<p class="lead">2026年2月〜2028年12月の月別スコアです。赤い点は消耗・要注意の月、緑の点は追い風の月です。±3以上の月には月名を付けています。</p>';
+    h += '<div class="chart">' + s2 + '</div>';
     h += "<h2>10年ごとのテーマ</h2><div class=\"tl\">";
     h += D.decades.map(function (d) {
       var cur = D.nowAge >= d.r[0] && D.nowAge <= d.r[1];
